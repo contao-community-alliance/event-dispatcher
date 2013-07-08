@@ -16,7 +16,37 @@
 /** @var Pimple $container */
 
 $container['event-dispatcher'] = $container->share(
-	function ($container) {
-		return new \Symfony\Component\EventDispatcher\EventDispatcher();
+	function () {
+		$eventDispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
+
+		if (isset($GLOBALS['TL_EVENTS']) && is_array($GLOBALS['TL_EVENTS'])) {
+			foreach ($GLOBALS['TL_EVENTS'] as $eventName => $listeners) {
+				foreach ($listeners as $listener) {
+					if (is_array($listener) && count($listener) === 2 && is_int($listener[1])) {
+						list($listener, $priority) = $listener;
+					}
+					else {
+						$priority = 0;
+					}
+					$eventDispatcher->addListener($eventName, $listener, $priority);
+				}
+			}
+		}
+
+		if (isset($GLOBALS['TL_EVENT_SUBSCRIBERS']) && is_array($GLOBALS['TL_EVENT_SUBSCRIBERS'])) {
+			foreach ($GLOBALS['TL_EVENT_SUBSCRIBERS'] as $eventSubscriber) {
+				if (!is_object($eventSubscriber)) {
+					if (is_callable($eventSubscriber)) {
+						$eventSubscriber = call_user_func($eventSubscriber, $eventDispatcher);
+					}
+					else {
+						$eventSubscriber = new $eventSubscriber();
+					}
+				}
+				$eventDispatcher->addSubscriber($eventSubscriber);
+			}
+		}
+
+		return $eventDispatcher;
 	}
 );
