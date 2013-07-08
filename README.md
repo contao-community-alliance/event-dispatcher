@@ -7,6 +7,7 @@ The are both notifications from within the system.
 But events are more elastic than hooks. They can be hand round, consumed, stopped or bubble upon a hierarchy.
 
 The real big reasons, why an event dispatcher exists for Contao are:
+
 1. [Events](http://en.wikipedia.org/wiki/Event_%28computing%29) are standard paradigm in software design.
 2. [Hooking](http://en.wikipedia.org/wiki/Hooking) is a paradigm to alter the behavior of a software, is it not designed for notifications.
 3. Hooks are only a special form of events.
