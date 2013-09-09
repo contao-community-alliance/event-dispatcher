@@ -2,6 +2,7 @@
 	"name":"bit3/contao-event-dispatcher",
 	"description":"Event dispatcher service for Contao Open Source CMS",
 	"keywords":["contao", "event"],
+	"type": "contao-module",
 	"license":"LGPL-3.0+",
 	"authors":[
 		{
