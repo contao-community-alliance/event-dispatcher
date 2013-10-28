@@ -6,7 +6,7 @@
  *
  * PHP version 5
  *
- * @copyright  bit3 UG 2013
+ * @copyright  (c) 2013 Contao Community Alliance
  * @author     Tristan Lins <tristan.lins@bit3.de>
  * @package    event-dispatcher
  * @license    LGPL
