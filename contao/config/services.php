@@ -69,7 +69,7 @@ $container['event-dispatcher'] = $container->share(
 		$eventDispatcher = $factory();
 		$configurator($eventDispatcher);
 
-		$event = new CreateEventDispatcherEvent($eventDispatcher);
+		$event = new \ContaoCommunityAlliance\Contao\EventDispatcher\Event\CreateEventDispatcherEvent($eventDispatcher);
 		$eventDispatcher->dispatch($event::NAME, $event);
 		$eventDispatcher = $event->getEventDispatcher();
 
