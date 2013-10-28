@@ -16,33 +16,33 @@
 namespace ContaoCommunityAlliance\Contao\EventDispatcher\Event;
 
 use Symfony\Component\EventDispatcher\Event;
-use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class CreateEventDispatcherEvent extends Event
 {
 	const NAME = 'ContaoCommunityAlliance\Contao\EventDispatcher\Event\CreateEventDispatcher';
 
 	/**
-	 * @var EventDispatcher
+	 * @var EventDispatcherInterface
 	 */
 	protected $eventDispatcher;
 
-	function __construct(EventDispatcher $eventDispatcher)
+	function __construct(EventDispatcherInterface $eventDispatcher)
 	{
 		$this->eventDispatcher = $eventDispatcher;
 	}
 
 	/**
-	 * @param \Symfony\Component\EventDispatcher\EventDispatcher $eventDispatcher
+	 * @param EventDispatcherInterface $eventDispatcher
 	 */
-	public function setEventDispatcher($eventDispatcher)
+	public function setEventDispatcher(EventDispatcherInterface $eventDispatcher)
 	{
 		$this->eventDispatcher = $eventDispatcher;
 		return $this;
 	}
 
 	/**
-	 * @return \Symfony\Component\EventDispatcher\EventDispatcher
+	 * @return EventDispatcherInterface
 	 */
 	public function getEventDispatcher()
 	{
