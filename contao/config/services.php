@@ -69,6 +69,10 @@ $container['event-dispatcher'] = $container->share(
 		$eventDispatcher = $factory();
 		$configurator($eventDispatcher);
 
+		$event = new CreateEventDispatcherEvent($eventDispatcher);
+		$eventDispatcher->dispatch($event::NAME, $event);
+		$eventDispatcher = $event->getEventDispatcher();
+
 		return $eventDispatcher;
 	}
 );

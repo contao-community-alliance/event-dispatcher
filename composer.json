@@ -29,6 +29,11 @@
 	"replace": {
 		"bit3/contao-event-dispatcher": "*"
 	},
+	"autoload":{
+		"psr-0":{
+			"ContaoCommunityAlliance\\Contao\\EventDispatcher": "src/"
+		}
+	},
 	"extra": {
 		"contao": {
 			"sources": {
