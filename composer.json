@@ -24,7 +24,7 @@
 		"php":">=5.3",
 		"contao/core": ">=2.11,<3.3",
 		"contao-community-alliance/composer-installer": "*",
-		"bit3/contao-dependency-container": "~1",
+		"contao-community-alliance/dependency-container": "~1",
 		"symfony/event-dispatcher": "2.3.*"
 	},
 	"extra": {
