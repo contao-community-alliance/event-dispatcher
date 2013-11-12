@@ -27,7 +27,7 @@
 		"symfony/event-dispatcher": "2.3.*"
 	},
 	"replace": {
-		"bit3/contao-event-dispatcher": "*"
+		"bit3/contao-event-dispatcher": "self.version"
 	},
 	"autoload":{
 		"psr-0":{
