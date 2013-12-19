@@ -1,24 +1,28 @@
 <?php
 
 /**
- * Doctrine DBAL Bridge
+ * Event dispatcher for Contao
  * Copyright (C) 2013 Tristan Lins
  *
  * PHP version 5
  *
- * @copyright  bit3 UG 2013
+ * @copyright  (c) 2013 Contao Community Alliance
  * @author     Tristan Lins <tristan.lins@bit3.de>
- * @package    doctrine-dbal
+ * @package    event-dispatcher
  * @license    LGPL
  * @filesource
  */
 
 /** @var Pimple $container */
 
-$container['event-dispatcher'] = $container->share(
-	function () {
-		$eventDispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
+$container['event-dispatcher.factory.default'] = $container->protect(
+	function() {
+		return new \Symfony\Component\EventDispatcher\EventDispatcher();
+	}
+);
 
+$container['event-dispatcher.configurator.default'] = $container->protect(
+	function($eventDispatcher) {
 		if (isset($GLOBALS['TL_EVENTS']) && is_array($GLOBALS['TL_EVENTS'])) {
 			foreach ($GLOBALS['TL_EVENTS'] as $eventName => $listeners) {
 				foreach ($listeners as $listener) {
@@ -46,6 +50,28 @@ $container['event-dispatcher'] = $container->share(
 				$eventDispatcher->addSubscriber($eventSubscriber);
 			}
 		}
+	}
+);
+
+if (!isset($container['event-dispatcher.factory'])) {
+	$container['event-dispatcher.factory'] = $container->raw('event-dispatcher.factory.default');
+}
+
+if (!isset($container['event-dispatcher.configurator'])) {
+	$container['event-dispatcher.configurator'] = $container->raw('event-dispatcher.configurator.default');
+}
+
+$container['event-dispatcher'] = $container->share(
+	function ($container) {
+		$factory      = $container['event-dispatcher.factory'];
+		$configurator = $container['event-dispatcher.configurator'];
+
+		$eventDispatcher = $factory();
+		$configurator($eventDispatcher);
+
+		$event = new \ContaoCommunityAlliance\Contao\EventDispatcher\Event\CreateEventDispatcherEvent($eventDispatcher);
+		$eventDispatcher->dispatch($event::NAME, $event);
+		$eventDispatcher = $event->getEventDispatcher();
 
 		return $eventDispatcher;
 	}
