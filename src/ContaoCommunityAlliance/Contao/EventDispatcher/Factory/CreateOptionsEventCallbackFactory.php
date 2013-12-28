@@ -25,18 +25,26 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 class CreateOptionsEventCallbackFactory
 {
 	/**
-	 * @param string $eventName
-	 * @param string $class
+	 * Create a new event driven options callback.
+	 *
+	 * @param string         $eventName      The event name to dispatch.
+	 * @param string|closure $classOrFactory Class name of the event or a factory method to create the event object.
+	 *
+	 * @return array Return a Contao callback that can be used as options_callback.
 	 */
-	static public function createCallback($eventName, $class = null)
+	static public function createCallback($eventName, $classOrFactory = null)
 	{
-		$callback = function ($dc) use ($eventName, $class) {
-			if (!$class) {
-				$class = 'ContaoCommunityAlliance\Contao\EventDispatcher\Event\CreateOptionsEvent';
+		$callback = function ($dc) use ($eventName, $classOrFactory) {
+			if (!$classOrFactory) {
+				$event = new CreateOptionsEvent($dc);
 			}
-
-			/** @var CreateOptionsEvent $event */
-			$event = new $class($dc);
+			else if (is_callable($classOrFactory)) {
+				$event = call_user_func($classOrFactory, $dc);
+			}
+			else {
+				/** @var CreateOptionsEvent $event */
+				$event = new $classOrFactory($dc);
+			}
 
 			/** @var EventDispatcher $eventDispatcher */
 			$eventDispatcher = $GLOBALS['container']['event-dispatcher'];
