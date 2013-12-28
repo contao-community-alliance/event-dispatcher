@@ -15,7 +15,6 @@
 
 namespace ContaoCommunityAlliance\Contao\EventDispatcher\Helper;
 
-use ContaoCommunityAlliance\Contao\EventDispatcher\Event\CreateOptionsEvent;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
