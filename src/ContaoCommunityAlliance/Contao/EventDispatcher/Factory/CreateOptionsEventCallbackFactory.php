@@ -2,7 +2,7 @@
 
 /**
  * Event dispatcher for Contao
- * Copyright (C) 2013 Tristan Lins
+ * Copyright (C) 2013 Contao Community Alliance
  *
  * PHP version 5
  *
