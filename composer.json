@@ -3,6 +3,7 @@
 	"description":"Event dispatcher service for Contao Open Source CMS",
 	"keywords":["contao", "event"],
 	"type": "contao-module",
+	"homepage":"http://c-c-a.org/",
 	"license":"LGPL-3.0+",
 	"authors":[
 		{
