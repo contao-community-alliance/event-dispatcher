@@ -22,7 +22,7 @@ $container['event-dispatcher.factory.default'] = $container->protect(
 );
 
 $container['event-dispatcher.configurator.default'] = $container->protect(
-	function($eventDispatcher) {
+	function(\Symfony\Component\EventDispatcher\EventDispatcher $eventDispatcher) {
 		if (isset($GLOBALS['TL_EVENTS']) && is_array($GLOBALS['TL_EVENTS'])) {
 			foreach ($GLOBALS['TL_EVENTS'] as $eventName => $listeners) {
 				foreach ($listeners as $listener) {
