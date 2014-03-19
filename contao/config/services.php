@@ -39,14 +39,13 @@ $container['event-dispatcher.configurator.default'] = $container->protect(
 
 		if (isset($GLOBALS['TL_EVENT_SUBSCRIBERS']) && is_array($GLOBALS['TL_EVENT_SUBSCRIBERS'])) {
 			foreach ($GLOBALS['TL_EVENT_SUBSCRIBERS'] as $eventSubscriber) {
-				if (!is_object($eventSubscriber)) {
-					if (is_callable($eventSubscriber)) {
-						$eventSubscriber = call_user_func($eventSubscriber, $eventDispatcher);
-					}
-					else {
-						$eventSubscriber = new $eventSubscriber();
-					}
+				if (is_string($eventSubscriber)) {
+					$eventSubscriber = new $eventSubscriber();
 				}
+				else if (is_callable($eventSubscriber)) {
+					$eventSubscriber = call_user_func($eventSubscriber, $eventDispatcher);
+				}
+
 				$eventDispatcher->addSubscriber($eventSubscriber);
 			}
 		}
