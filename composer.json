@@ -22,7 +22,7 @@
 	},
 	"require":{
 		"php":">=5.3",
-		"contao/core": ">=2.11,<3.3",
+		"contao/core": ">=2.11,<3.4",
 		"contao-community-alliance/composer-installer": "*",
 		"contao-community-alliance/dependency-container": "~1.4",
 		"symfony/event-dispatcher": "2.3.*"
