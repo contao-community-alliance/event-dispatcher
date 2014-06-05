@@ -3,6 +3,7 @@
 	"description":"Event dispatcher service for Contao Open Source CMS",
 	"keywords":["contao", "event"],
 	"type": "contao-module",
+	"homepage":"http://c-c-a.org/",
 	"license":"LGPL-3.0+",
 	"authors":[
 		{
@@ -21,10 +22,10 @@
 	},
 	"require":{
 		"php":">=5.3",
-		"contao/core": ">=2.11,<3.3",
-		"contao-community-alliance/composer-installer": "*",
+		"contao/core": ">=2.11,<3.4",
+		"contao-community-alliance/composer-plugin": "~2.0",
 		"contao-community-alliance/dependency-container": "~1.4",
-		"symfony/event-dispatcher": "2.3.*"
+		"symfony/event-dispatcher": "~2.3"
 	},
 	"replace": {
 		"bit3/contao-event-dispatcher": "self.version"

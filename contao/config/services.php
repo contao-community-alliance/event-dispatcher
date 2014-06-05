@@ -22,7 +22,7 @@ $container['event-dispatcher.factory.default'] = $container->protect(
 );
 
 $container['event-dispatcher.configurator.default'] = $container->protect(
-	function($eventDispatcher) {
+	function(\Symfony\Component\EventDispatcher\EventDispatcher $eventDispatcher) {
 		if (isset($GLOBALS['TL_EVENTS']) && is_array($GLOBALS['TL_EVENTS'])) {
 			foreach ($GLOBALS['TL_EVENTS'] as $eventName => $listeners) {
 				foreach ($listeners as $listener) {
@@ -39,14 +39,13 @@ $container['event-dispatcher.configurator.default'] = $container->protect(
 
 		if (isset($GLOBALS['TL_EVENT_SUBSCRIBERS']) && is_array($GLOBALS['TL_EVENT_SUBSCRIBERS'])) {
 			foreach ($GLOBALS['TL_EVENT_SUBSCRIBERS'] as $eventSubscriber) {
-				if (!is_object($eventSubscriber)) {
-					if (is_callable($eventSubscriber)) {
-						$eventSubscriber = call_user_func($eventSubscriber, $eventDispatcher);
-					}
-					else {
-						$eventSubscriber = new $eventSubscriber();
-					}
+				if (is_string($eventSubscriber)) {
+					$eventSubscriber = new $eventSubscriber();
 				}
+				else if (is_callable($eventSubscriber)) {
+					$eventSubscriber = call_user_func($eventSubscriber, $eventDispatcher);
+				}
+
 				$eventDispatcher->addSubscriber($eventSubscriber);
 			}
 		}
