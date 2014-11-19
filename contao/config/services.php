@@ -72,7 +72,10 @@ $container['event-dispatcher'] = $container->share(
         $configurator($eventDispatcher, $container);
 
         $event = new \ContaoCommunityAlliance\Contao\EventDispatcher\Event\CreateEventDispatcherEvent($eventDispatcher);
-        $eventDispatcher->dispatch($event::NAME, $event);
+        $eventDispatcher->dispatch(
+            \ContaoCommunityAlliance\Contao\EventDispatcher\EventDispatcherEvents::CREATE_EVENT_DISPATCHER,
+            $event
+        );
         $eventDispatcher = $event->getEventDispatcher();
 
         return $eventDispatcher;

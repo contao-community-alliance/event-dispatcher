@@ -29,7 +29,8 @@ class CreateEventDispatcherEvent extends Event
      * The event name.
      *
      * @var string
-     * @deprecated
+     * @deprecated Use ContaoCommunityAlliance\Contao\EventDispatcher\EventDispatcherEvents::CREATE_EVENT_DISPATCHER
+     *             instead.
      */
     const NAME = 'ContaoCommunityAlliance\Contao\EventDispatcher\Event\CreateEventDispatcher';
 
