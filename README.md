@@ -24,12 +24,44 @@ Second the event subscriber is designed to listen on multiple events.
 
 ### Event listener per configuration
 
-Use `$GLOBALS['TL_EVENTS']` to register your event handlers.
+Since version 1.3 there are two ways to define your listeners per configuration.
+
+#### /config/event_listeners.php
+
+**We recommend to use this method!**
+
+The file `/config/event_listeners.php` must return an array of event names as keys and listeners as values.
+
+```php
+<?php
+return array(
+    // With a closure
+    'event-name' => array(
+        function($event) {
+            // event code
+        }
+    ),
+    
+    // With a static callable
+    'event-name' => array(
+        array('MyClass', 'myCallable')
+    ),
+    
+    // With an object callable
+    'event-name' => array(
+        array(new MyClass(), 'myCallable')
+    ),
+);
+```
+
+#### /config/config.php
+
+In your `/config/config.php` use `$GLOBALS['TL_EVENTS']` to register your event handlers.
 
 With a closure:
 ```php
 $GLOBALS['TL_EVENTS']['event-name'][] = function($event) {
-	// event code
+    // event code
 };
 ```
 
@@ -59,12 +91,42 @@ $container['event-dispatcher']->addListener('event-name', $listener);
 
 ### Event subscriber per configuration
 
-Use `$GLOBALS['TL_EVENT_SUBSCRIBERS']` to register your subscribers.
+Since version 1.3 there are two ways to define your listeners per configuration.
+
+#### /config/event_subscribers.php
+
+**We recommend to use this method!**
+
+The file `/config/event_subscribers.php` must return an array of subscribers.
+
+```php
+<?php
+return array(
+    // With a factory
+    function($eventDispatcher) {
+        return new MyEventSubscriber();
+    },
+    
+    // With a static callable
+    'event-name' => array(
+        array('MyClass', 'myCallable')
+    ),
+    
+    // With an object callable
+    'event-name' => array(
+        array(new MyClass(), 'myCallable')
+    ),
+);
+```
+
+#### /config/config.php
+
+In your `/config/config.php` use `$GLOBALS['TL_EVENT_SUBSCRIBERS']` to register your subscribers.
 
 With a factory:
 ```php
 $GLOBALS['TL_EVENT_SUBSCRIBERS'][] = function($eventDispatcher) {
-	return new MyEventSubscriber();
+    return new MyEventSubscriber();
 };
 ```
 
