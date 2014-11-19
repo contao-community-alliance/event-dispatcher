@@ -1,49 +1,59 @@
 {
-	"name":"contao-community-alliance/event-dispatcher",
-	"description":"Event dispatcher service for Contao Open Source CMS",
-	"keywords":["contao", "event"],
-	"type": "contao-module",
-	"homepage":"http://c-c-a.org/",
-	"license":"LGPL-3.0+",
-	"authors":[
-		{
-			"name":"Tristan Lins",
-			"email":"tristan.lins@bit3.de",
-			"homepage":"http://bit3.de",
-			"role":"Developer"
-		}
-	],
-	"support":{
-		"email":"info@bit3.de",
-		"issues":"https://github.com/contao-community-alliance/event-dispatcher/issues",
-		"wiki":"https://github.com/contao-community-alliance/event-dispatcher/wiki",
-		"irc":"irc://irc.freenode.org/contao.dev",
-		"source":"https://github.com/contao-community-alliance/event-dispatcher"
-	},
-	"require":{
-		"php":">=5.3",
-		"contao/core": ">=2.11,<4-dev",
-		"contao-community-alliance/composer-plugin": "~2.0",
-		"contao-community-alliance/dependency-container": "~1.4",
-		"symfony/event-dispatcher": "~2.3"
-	},
-	"replace": {
-		"bit3/contao-event-dispatcher": "self.version"
-	},
-	"autoload":{
-		"psr-0":{
-			"ContaoCommunityAlliance\\Contao\\EventDispatcher": "src/"
-		}
-	},
-	"extra": {
-		"contao": {
-			"sources": {
-				"contao": "system/modules/event-dispatcher"
-			}
-		},
-		"branch-alias": {
-			"dev-master": "1.2.x-dev",
-			"dev-develop": "1.3.x-dev"
-		}
-	}
+    "name": "contao-community-alliance/event-dispatcher",
+    "description": "Event dispatcher service for Contao Open Source CMS",
+    "keywords": [
+        "contao",
+        "event"
+    ],
+    "type": "contao-module",
+    "homepage": "http://c-c-a.org/",
+    "license": "LGPL-3.0+",
+    "authors": [
+        {
+            "name": "Tristan Lins",
+            "email": "tristan.lins@bit3.de",
+            "homepage": "http://bit3.de",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "info@bit3.de",
+        "issues": "https://github.com/contao-community-alliance/event-dispatcher/issues",
+        "wiki": "https://github.com/contao-community-alliance/event-dispatcher/wiki",
+        "irc": "irc://irc.freenode.org/contao.dev",
+        "source": "https://github.com/contao-community-alliance/event-dispatcher"
+    },
+    "require": {
+        "php": ">=5.3",
+        "contao/core": ">=2.11,<4-dev",
+        "contao-community-alliance/composer-plugin": "~2.0",
+        "contao-community-alliance/dependency-container": "~1.4",
+        "symfony/event-dispatcher": "~2.3"
+    },
+    "require-dev": {
+        "contao-community-alliance/coding-standard": "~1.0",
+        "contao-community-alliance/build-system": "~1.0",
+        "contao-community-alliance/build-system-all-tasks": "~1.0"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "replace": {
+        "bit3/contao-event-dispatcher": "self.version"
+    },
+    "autoload": {
+        "psr-0": {
+            "ContaoCommunityAlliance\\Contao\\EventDispatcher": "src/"
+        }
+    },
+    "extra": {
+        "contao": {
+            "sources": {
+                "contao": "system/modules/event-dispatcher"
+            }
+        },
+        "branch-alias": {
+            "dev-master": "1.2.x-dev",
+            "dev-develop": "1.3.x-dev"
+        }
+    }
 }

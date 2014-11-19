@@ -1,15 +1,17 @@
 <?php
 
 /**
- * Event dispatcher for Contao
- * Copyright (C) 2013 Contao Community Alliance
+ * This file is part of contao-community-alliance/event-dispatcher.
  *
- * PHP version 5
+ * (c) Contao Community Alliance <https://c-c-a.org>
  *
- * @copyright  (c) 2013 Contao Community Alliance
- * @author     Tristan Lins <tristan.lins@bit3.de>
- * @package    event-dispatcher
- * @license    LGPL
+ * This project is provided in good faith and hope to be usable by anyone.
+ *
+ * @package    contao-community-alliance/<project-name>
+ * @author     Tristan Lins <t.lins@c-c-a.org>
+ * @copyright  Contao Community Alliance <https://c-c-a.org>
+ * @link       https://github.com/contao-community-alliance/event-dispatcher
+ * @license    http://opensource.org/licenses/LGPL-3.0 LGPL-3.0+
  * @filesource
  */
 
@@ -18,34 +20,56 @@ namespace ContaoCommunityAlliance\Contao\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
+/**
+ * This event is dispatched, when the event dispatcher will be created.
+ */
 class CreateEventDispatcherEvent extends Event
 {
-	const NAME = 'ContaoCommunityAlliance\Contao\EventDispatcher\Event\CreateEventDispatcher';
+    /**
+     * The event name.
+     *
+     * @var string
+     * @deprecated
+     */
+    const NAME = 'ContaoCommunityAlliance\Contao\EventDispatcher\Event\CreateEventDispatcher';
 
-	/**
-	 * @var EventDispatcherInterface
-	 */
-	protected $eventDispatcher;
+    /**
+     * The event dispatcher.
+     *
+     * @var EventDispatcherInterface
+     */
+    protected $eventDispatcher;
 
-	function __construct(EventDispatcherInterface $eventDispatcher)
-	{
-		$this->eventDispatcher = $eventDispatcher;
-	}
+    /**
+     * Create a new event.
+     *
+     * @param EventDispatcherInterface $eventDispatcher The event dispatcher, that gets created.
+     */
+    public function __construct(EventDispatcherInterface $eventDispatcher)
+    {
+        $this->eventDispatcher = $eventDispatcher;
+    }
 
-	/**
-	 * @param EventDispatcherInterface $eventDispatcher
-	 */
-	public function setEventDispatcher(EventDispatcherInterface $eventDispatcher)
-	{
-		$this->eventDispatcher = $eventDispatcher;
-		return $this;
-	}
+    /**
+     * Replace the event dispatcher.
+     *
+     * @param EventDispatcherInterface $eventDispatcher The event dispatcher.
+     *
+     * @return static
+     */
+    public function setEventDispatcher(EventDispatcherInterface $eventDispatcher)
+    {
+        $this->eventDispatcher = $eventDispatcher;
+        return $this;
+    }
 
-	/**
-	 * @return EventDispatcherInterface
-	 */
-	public function getEventDispatcher()
-	{
-		return $this->eventDispatcher;
-	}
+    /**
+     * Return the event dispatcher.
+     *
+     * @return EventDispatcherInterface The event dispatcher.
+     */
+    public function getEventDispatcher()
+    {
+        return $this->eventDispatcher;
+    }
 }
