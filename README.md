@@ -51,6 +51,11 @@ return array(
     'event-name' => array(
         array(new MyClass(), 'myCallable')
     ),
+    
+    // You can wrap the listener into an array with a priority
+    'event-name' => array(
+        array($listener, $priority)
+    ),
 );
 ```
 
@@ -107,15 +112,11 @@ return array(
         return new MyEventSubscriber();
     },
     
-    // With a static callable
-    'event-name' => array(
-        array('MyClass', 'myCallable')
-    ),
+    // With an object class name
+    'MyEventSubscriber',
     
-    // With an object callable
-    'event-name' => array(
-        array(new MyClass(), 'myCallable')
-    ),
+    // With an object instance
+    new MyEventSubscriber(),
 );
 ```
 
