@@ -44,12 +44,17 @@ return array(
     
     // With a static callable
     'event-name' => array(
-        array('MyClass', 'myCallable')
+        array('MyEventListener', 'myCallable')
     ),
     
     // With an object callable
     'event-name' => array(
-        array(new MyClass(), 'myCallable')
+        array(new MyEventListener(), 'myCallable')
+    ),
+    
+    // With a service object
+    'event-name' => array(
+        array($GLOBALS['container']['my_event_listener'], 'myCallable')
     ),
     
     // You can wrap the listener into an array with a priority
@@ -72,12 +77,12 @@ $GLOBALS['TL_EVENTS']['event-name'][] = function($event) {
 
 With a static callable:
 ```php
-$GLOBALS['TL_EVENTS']['event-name'][] = array('MyClass', 'myCallable');
+$GLOBALS['TL_EVENTS']['event-name'][] = array('MyEventListener', 'myCallable');
 ```
 
 With an object callable:
 ```php
-$GLOBALS['TL_EVENTS']['event-name'][] = array(new MyClass(), 'myCallable');
+$GLOBALS['TL_EVENTS']['event-name'][] = array(new MyEventListener(), 'myCallable');
 ```
 
 #### Handle with priority
@@ -117,6 +122,9 @@ return array(
     
     // With an object instance
     new MyEventSubscriber(),
+    
+    // With a service object
+    $GLOBALS['container']['my_event_subscriber'],
 );
 ```
 
