@@ -17,7 +17,7 @@
 
 /** @var Pimple $container */
 
-$container['event-dispatcher.initializer'] = $container->protect(
+$container['event-dispatcher.initializer'] = $container->share(
     function () {
         return new \ContaoCommunityAlliance\Contao\EventDispatcher\EventDispatcherInitializer();
     }
