@@ -1,3 +1,9 @@
+[![Version](http://img.shields.io/packagist/v/contao-community-alliance/event-dispatcher.svg?style=flat-square)](https://packagist.org/packages/contao-community-alliance/event-dispatcher)
+[![Stable Build Status](http://img.shields.io/travis/contao-community-alliance/event-dispatcher/master.svg?style=flat-square&label=stable build)](https://travis-ci.org/contao-community-alliance/event-dispatcher)
+[![Upstream Build Status](http://img.shields.io/travis/contao-community-alliance/event-dispatcher/develop.svg?style=flat-square&label=dev build)](https://travis-ci.org/contao-community-alliance/event-dispatcher)
+[![License](http://img.shields.io/packagist/l/contao-community-alliance/event-dispatcher.svg?style=flat-square)](http://spdx.org/licenses/LGPL-3.0+)
+[![Downloads](http://img.shields.io/packagist/dt/contao-community-alliance/event-dispatcher.svg?style=flat-square)](https://packagist.org/packages/contao-community-alliance/event-dispatcher)
+
 # Event dispatcher for Contao Open Source CMS
 
 Why an event dispatcher for Contao Open Source CMS, are the hooks not enough?
