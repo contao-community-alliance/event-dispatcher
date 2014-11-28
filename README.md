@@ -1,3 +1,9 @@
+[![Version](http://img.shields.io/packagist/v/contao-community-alliance/event-dispatcher.svg?style=flat-square)](https://packagist.org/packages/contao-community-alliance/event-dispatcher)
+[![Stable Build Status](http://img.shields.io/travis/contao-community-alliance/event-dispatcher/master.svg?style=flat-square&label=stable build)](https://travis-ci.org/contao-community-alliance/event-dispatcher)
+[![Upstream Build Status](http://img.shields.io/travis/contao-community-alliance/event-dispatcher/develop.svg?style=flat-square&label=dev build)](https://travis-ci.org/contao-community-alliance/event-dispatcher)
+[![License](http://img.shields.io/packagist/l/contao-community-alliance/event-dispatcher.svg?style=flat-square)](http://spdx.org/licenses/LGPL-3.0+)
+[![Downloads](http://img.shields.io/packagist/dt/contao-community-alliance/event-dispatcher.svg?style=flat-square)](https://packagist.org/packages/contao-community-alliance/event-dispatcher)
+
 # Event dispatcher for Contao Open Source CMS
 
 Why an event dispatcher for Contao Open Source CMS, are the hooks not enough?
@@ -24,23 +30,65 @@ Second the event subscriber is designed to listen on multiple events.
 
 ### Event listener per configuration
 
-Use `$GLOBALS['TL_EVENTS']` to register your event handlers.
+Since version 1.3 there are two ways to define your listeners per configuration.
+
+#### /config/event_listeners.php
+
+**We recommend to use this method!**
+
+The file `/config/event_listeners.php` must return an array of event names as keys and listeners as values.
+
+```php
+<?php
+return array(
+    // With a closure
+    'event-name' => array(
+        function($event) {
+            // event code
+        }
+    ),
+    
+    // With a static callable
+    'event-name' => array(
+        array('MyEventListener', 'myCallable')
+    ),
+    
+    // With an object callable
+    'event-name' => array(
+        array(new MyEventListener(), 'myCallable')
+    ),
+    
+    // With a service object
+    'event-name' => array(
+        array($GLOBALS['container']['my_event_listener'], 'myCallable')
+    ),
+    
+    // You can wrap the listener into an array with a priority
+    'event-name' => array(
+        array($listener, $priority)
+    ),
+);
+```
+
+#### /config/config.php
+
+In your `/config/config.php` use `$GLOBALS['TL_EVENTS']` to register your event handlers.
 
 With a closure:
 ```php
 $GLOBALS['TL_EVENTS']['event-name'][] = function($event) {
-	// event code
+    // event code
 };
 ```
 
 With a static callable:
 ```php
-$GLOBALS['TL_EVENTS']['event-name'][] = array('MyClass', 'myCallable');
+$GLOBALS['TL_EVENTS']['event-name'][] = array('MyEventListener', 'myCallable');
 ```
 
 With an object callable:
 ```php
-$GLOBALS['TL_EVENTS']['event-name'][] = array(new MyClass(), 'myCallable');
+$GLOBALS['TL_EVENTS']['event-name'][] = array(new MyEventListener(), 'myCallable');
 ```
 
 #### Handle with priority
@@ -59,12 +107,41 @@ $container['event-dispatcher']->addListener('event-name', $listener);
 
 ### Event subscriber per configuration
 
-Use `$GLOBALS['TL_EVENT_SUBSCRIBERS']` to register your subscribers.
+Since version 1.3 there are two ways to define your listeners per configuration.
+
+#### /config/event_subscribers.php
+
+**We recommend to use this method!**
+
+The file `/config/event_subscribers.php` must return an array of subscribers.
+
+```php
+<?php
+return array(
+    // With a factory
+    function($eventDispatcher) {
+        return new MyEventSubscriber();
+    },
+    
+    // With an object class name
+    'MyEventSubscriber',
+    
+    // With an object instance
+    new MyEventSubscriber(),
+    
+    // With a service object
+    $GLOBALS['container']['my_event_subscriber'],
+);
+```
+
+#### /config/config.php
+
+In your `/config/config.php` use `$GLOBALS['TL_EVENT_SUBSCRIBERS']` to register your subscribers.
 
 With a factory:
 ```php
 $GLOBALS['TL_EVENT_SUBSCRIBERS'][] = function($eventDispatcher) {
-	return new MyEventSubscriber();
+    return new MyEventSubscriber();
 };
 ```
 
