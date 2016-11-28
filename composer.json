@@ -40,8 +40,8 @@
         "bit3/contao-event-dispatcher": "self.version"
     },
     "autoload": {
-        "psr-0": {
-            "ContaoCommunityAlliance\\Contao\\EventDispatcher": "src/"
+        "psr-4": {
+            "ContaoCommunityAlliance\\Contao\\EventDispatcher\\": "src/"
         }
     },
     "extra": {
