@@ -24,16 +24,15 @@
         "source": "https://github.com/contao-community-alliance/event-dispatcher"
     },
     "require": {
-        "php": ">=5.3",
-        "contao/core": ">=2.11,<4-dev",
-        "contao-community-alliance/composer-plugin": "~2.0",
-        "contao-community-alliance/dependency-container": "~1.6",
-        "symfony/event-dispatcher": "~2.3"
+        "php": ">=5.4",
+        "contao/core-bundle": "~3.5 | ~4.0",
+        "contao-community-alliance/composer-plugin": "~2.0 | ~3.0",
+        "contao-community-alliance/dependency-container": "dev-feature/contao4-proposal2 as 1.9.0",
+        "symfony/event-dispatcher": "~2.3 | ~3.0",
+        "symfony/http-kernel": "~2.8 | ~3.0"
     },
     "require-dev": {
-        "contao-community-alliance/coding-standard": "~1.0",
-        "contao-community-alliance/build-system": "~1.0",
-        "contao-community-alliance/build-system-all-tasks": "~1.0"
+        "phpcq/all-tasks": "~1.1"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
