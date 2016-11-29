@@ -10,14 +10,19 @@
     "license": "LGPL-3.0+",
     "authors": [
         {
-            "name": "Tristan Lins",
-            "email": "tristan.lins@bit3.de",
-            "homepage": "http://bit3.de",
+            "name": "Christian Schiffler",
+            "email": "c.schiffler@cyberspectrum.de",
+            "homepage": "http://www.cyberspectrum.de",
+            "role": "Developer"
+        },
+        {
+            "name": "Stefan Heimes",
+            "email": "stefan_heimes@hotmail.com",
             "role": "Developer"
         }
     ],
     "support": {
-        "email": "info@bit3.de",
+        "email": "info@c-c-a.org",
         "issues": "https://github.com/contao-community-alliance/event-dispatcher/issues",
         "wiki": "https://github.com/contao-community-alliance/event-dispatcher/wiki",
         "irc": "irc://irc.freenode.org/contao.dev",
