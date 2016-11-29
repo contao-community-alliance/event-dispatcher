@@ -47,7 +47,7 @@
     "extra": {
         "contao": {
             "sources": {
-                "contao": "system/modules/event-dispatcher"
+                "src/Resources/contao": "system/modules/event-dispatcher"
             }
         },
         "branch-alias": {
