@@ -46,9 +46,9 @@ class ResourceLocator
     /**
      * Create a new instance.
      *
-     * @param string    $appRoot  The application root.
-     * @param \string[] $bundles  The list of registered bundles.
-     * @param string    $fileName The name of the resource files to search.
+     * @param string   $appRoot  The application root.
+     * @param string[] $bundles  The list of registered bundles.
+     * @param string   $fileName The name of the resource files to search.
      */
     public function __construct($appRoot, array $bundles, $fileName)
     {
