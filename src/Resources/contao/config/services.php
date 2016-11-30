@@ -16,62 +16,38 @@
  * @filesource
  */
 
+use ContaoCommunityAlliance\Contao\EventDispatcher\Configuration\ResourceLocator;
+use ContaoCommunityAlliance\Contao\EventDispatcher\EventDispatcherPopulator;
 use DependencyInjection\Container\PimpleGate;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
 /** @var PimpleGate $container */
+
+// Contao 4 code.
 if ($container->isContao4()) {
-    $container->provideSymfonyService('event-dispatcher');
+    $container->provideSymfonyService('event_dispatcher');
     return;
 }
 
-$container['event-dispatcher.initializer'] = $container->share(
-    function () {
-        return new \ContaoCommunityAlliance\Contao\EventDispatcher\EventDispatcherInitializer();
-    }
-);
-
-$container['event-dispatcher.factory.default'] = $container->protect(
-    function () {
-        return new \Symfony\Component\EventDispatcher\EventDispatcher();
-    }
-);
-
-$container['event-dispatcher.configurator.default'] = $container->protect(
-    function (\Symfony\Component\EventDispatcher\EventDispatcher $eventDispatcher) {
-        global $container;
-
-        /** @var \ContaoCommunityAlliance\Contao\EventDispatcher\EventDispatcherInitializer $initializer */
-        $initializer = $container['event-dispatcher.initializer'];
-
-        /** @var \Contao\Config $config */
-        $config = $container['config'];
-
-        $initializer->configure($eventDispatcher, $config);
-    }
-);
-
-if (!isset($container['event-dispatcher.factory'])) {
-    $container['event-dispatcher.factory'] = function($container) {
-        return $container['event-dispatcher.factory.default'];
-    };
-}
-
-if (!isset($container['event-dispatcher.configurator'])) {
-    $container['event-dispatcher.configurator'] = function($container) {
-        return $container['event-dispatcher.configurator.default'];
-    };
-}
-
+// Contao 3 code.
 $container['event-dispatcher'] = $container->share(
-    function ($container) {
-        /** @var \ContaoCommunityAlliance\Contao\EventDispatcher\EventDispatcherInitializer $initializer */
-        $initializer = $container['event-dispatcher.initializer'];
+    function () {
+        $dispatcher = new EventDispatcher();
 
-        /** @var \Closure $factory */
-        $factory = $container['event-dispatcher.factory'];
-        /** @var \Closure $configurator */
-        $configurator = $container['event-dispatcher.configurator'];
+        // Collect all system paths
+        $bundles = [];
+        foreach (ModuleLoader::getActive() as $module) {
+            $bundles[$module] = 'Contao\CoreBundle\HttpKernel\Bundle\ContaoModuleBundle';
+        }
 
-        return $initializer->create($factory, $configurator);
+        $populator = new EventDispatcherPopulator(
+            $dispatcher,
+            (new ResourceLocator(TL_ROOT, $bundles, 'event_listeners.php'))->getResourcePaths(),
+            (new ResourceLocator(TL_ROOT, $bundles, 'event_subscribers.php'))->getResourcePaths()
+        );
+
+        $populator->populate();
+
+        return $dispatcher;
     }
 );
