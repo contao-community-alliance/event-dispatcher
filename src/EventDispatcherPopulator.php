@@ -153,7 +153,7 @@ class EventDispatcherPopulator
             $this->addSubscribers($GLOBALS['TL_EVENT_SUBSCRIBERS']);
         }
 
-        foreach ($this->listenerFiles as $file) {
+        foreach ($this->subscriberFiles as $file) {
             $events = (array) include $file;
             $this->addSubscribers($events);
         }
