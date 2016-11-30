@@ -49,6 +49,11 @@
             "ContaoCommunityAlliance\\Contao\\EventDispatcher\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "ContaoCommunityAlliance\\Contao\\EventDispatcher\\Test\\": "tests/"
+        }
+    },
     "extra": {
         "contao": {
             "sources": {
