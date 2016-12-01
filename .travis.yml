@@ -8,23 +8,23 @@ php:
   - "7.1"
 
 env:
-  - CONTAO_VERSION=~3.5.0
-  - CONTAO_VERSION=~4.2.0
-  - CONTAO_VERSION=~4.3.0
+  - CONTAO_VERSION=contao/core ~3.5.0
+  - CONTAO_VERSION=contao/core-bundle ~4.2.0
+  - CONTAO_VERSION=contao/core-bundle ~4.3.0
 
 # Exclude impossible Contao Version combinations.
 matrix:
   exclude:
     - php: "5.4"
-      env: CONTAO_VERSION=~4.2.0
+      env: CONTAO_VERSION=contao/core-bundle ~4.2.0
     - php: "5.4"
-      env: CONTAO_VERSION=~4.3.0
+      env: CONTAO_VERSION=contao/core-bundle ~4.3.0
 
 sudo: false
 
 install:
   - travis_retry composer self-update && composer --version
-  - travis_retry composer require contao/core-bundle $CONTAO_VERSION --no-update
+  - travis_retry composer require $CONTAO_VERSION --no-update
   - travis_retry composer update --prefer-dist --no-interaction
 
 script: ant -keep-going
