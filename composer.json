@@ -5,7 +5,7 @@
         "contao",
         "event"
     ],
-    "type": "contao-module",
+    "type": "contao-bundle",
     "homepage": "http://c-c-a.org/",
     "license": "LGPL-3.0+",
     "authors": [
@@ -29,12 +29,11 @@
         "source": "https://github.com/contao-community-alliance/event-dispatcher"
     },
     "require": {
-        "php": ">=5.4",
-        "contao/core-bundle": "~3.5 | ~4.0",
-        "contao-community-alliance/composer-plugin": "~2.0 | ~3.0",
+        "php": ">=5.6",
+        "contao/core-bundle": "~4.4",
         "contao-community-alliance/dependency-container": "~2.0@dev",
-        "symfony/event-dispatcher": "~2.3 | ~3.0",
-        "symfony/http-kernel": "~2.8 | ~3.0"
+        "symfony/event-dispatcher": "~3.0",
+        "symfony/http-kernel": "~3.0"
     },
     "require-dev": {
         "phpcq/all-tasks": "~1.1"
@@ -53,11 +52,7 @@
         }
     },
     "extra": {
-        "contao": {
-            "sources": {
-                "src/Resources/contao": "system/modules/event-dispatcher"
-            }
-        },
+        "contao-manager-plugin": "ContaoCommunityAlliance\\Contao\\EventDispatcher\\ContaoManager\\Plugin",
         "branch-alias": {
             "dev-feature/contao4": "2.0.x-dev"
         }
