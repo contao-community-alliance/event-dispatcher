@@ -29,26 +29,3 @@ if ($container->isContao4()) {
     $container->provideSymfonyService('event-dispatcher', 'event_dispatcher');
     return;
 }
-
-// Contao 3 code.
-$container['event-dispatcher'] = $container->share(
-    function () {
-        $dispatcher = new EventDispatcher();
-
-        // Collect all system paths
-        $bundles = [];
-        foreach (ModuleLoader::getActive() as $module) {
-            $bundles[$module] = 'Contao\CoreBundle\HttpKernel\Bundle\ContaoModuleBundle';
-        }
-
-        $populator = new EventDispatcherPopulator(
-            $dispatcher,
-            (new ResourceLocator(TL_ROOT, $bundles, 'event_listeners.php'))->getResourcePaths(),
-            (new ResourceLocator(TL_ROOT, $bundles, 'event_subscribers.php'))->getResourcePaths()
-        );
-
-        $populator->populate();
-
-        return $dispatcher;
-    }
-);
