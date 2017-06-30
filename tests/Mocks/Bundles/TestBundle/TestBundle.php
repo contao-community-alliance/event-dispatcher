@@ -8,26 +8,21 @@
  * This project is provided in good faith and hope to be usable by anyone.
  *
  * @package    contao-community-alliance/event-dispatcher
- * @author     Tristan Lins <tristan@lins.io>
  * @author     Christian Schiffler <c.schiffler@cyberspectrum.de>
+ * @author     Tristan Lins <tristan@lins.io>
  * @copyright  2013-2016 Contao Community Alliance <https://c-c-a.org>
  * @license    https://github.com/contao-community-alliance/event-dispatcher/LICENSE LGPL-3.0+
  * @link       https://github.com/contao-community-alliance/event-dispatcher
  * @filesource
  */
 
-error_reporting(E_ALL);
+namespace ContaoCommunityAlliance\Contao\EventDispatcher\Test\Mocks\Bundles\TestBundle;
 
-$includeIfExists = function ($file) {
-    return file_exists($file) ? include $file : false;
-};
+use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-if (
-    (!$loader = $includeIfExists(__DIR__ . '/../vendor/autoload.php'))
-    && (!$loader = $includeIfExists(__DIR__ . '/../../../autoload.php'))
-) {
-    echo 'You must set up the project dependencies, run the following commands:' . PHP_EOL .
-         'curl -sS https://getcomposer.org/installer | php' . PHP_EOL .
-         'php composer.phar install' . PHP_EOL;
-    exit(1);
+/**
+ * This is the bundle for the unit test.
+ */
+class TestBundle extends Bundle
+{
 }

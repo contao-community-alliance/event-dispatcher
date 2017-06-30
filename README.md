@@ -4,6 +4,10 @@
 [![License](http://img.shields.io/packagist/l/contao-community-alliance/event-dispatcher.svg?style=flat-square)](http://spdx.org/licenses/LGPL-3.0+)
 [![Downloads](http://img.shields.io/packagist/dt/contao-community-alliance/event-dispatcher.svg?style=flat-square)](https://packagist.org/packages/contao-community-alliance/event-dispatcher)
 
+***NOTE:*** This is obsolete in Contao 4 - you should use the event dispatcher from the symfony kernel directly for
+Contao 4 only extensions.
+See below for maintaining compatibility with both Contao versions.
+
 # Event dispatcher for Contao Open Source CMS
 
 Why an event dispatcher for Contao Open Source CMS, are the hooks not enough?
@@ -159,4 +163,27 @@ $GLOBALS['TL_EVENT_SUBSCRIBERS'][] = new MyEventSubscriber();
 
 ```php
 $container['event-dispatcher']->addSubscriber(new MyEventSubscriber());
+```
+
+## Compatibility with Contao 3 & 4.
+
+You are encouraged to register your events directly in the symfony event dispatcher in Contao 4 using service
+configuration files (yaml, xml, ...).
+
+However, for maintaining compatibility, you still need to supply the `event_listeners.php` and `event_subscribers.php`
+files as otherwise the events will not get registered in Contao 3.
+
+To register events only in Contao 3, we suggest to return an empty array if the version compare is equal to 4.
+
+```diff
+ <?php
+ 
++ // Contao 4 registers events via symfony configuration.
++ if (version_compare(VERSION, '4.0', '>=')) {
++     return [];
++ }
+ 
+ return [
+     'some.event' => ['Some\EventListener', 'someMethod']
+ ];
 ```
