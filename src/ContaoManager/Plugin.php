@@ -18,10 +18,12 @@
 namespace ContaoCommunityAlliance\Contao\EventDispatcher\ContaoManager;
 
 use Contao\CoreBundle\ContaoCoreBundle;
+use Contao\ManagerBundle\ContaoManagerBundle;
 use Contao\ManagerPlugin\Bundle\BundlePluginInterface;
 use Contao\ManagerPlugin\Bundle\Config\BundleConfig;
 use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
 use ContaoCommunityAlliance\Contao\EventDispatcher\CcaEventDispatcherBundle;
+use DependencyInjection\Container\CcaDependencyInjectionBundle;
 
 /**
  * Plugin for the Contao Manager.
@@ -35,7 +37,13 @@ class Plugin implements BundlePluginInterface
     {
         return [
             BundleConfig::create(CcaEventDispatcherBundle::class)
-                ->setLoadAfter([ContaoCoreBundle::class]),
+                ->setLoadAfter(
+                    [
+                        ContaoCoreBundle::class,
+                        ContaoManagerBundle::class,
+                        CcaDependencyInjectionBundle::class
+                    ]
+                ),
         ];
     }
 }
