@@ -36,7 +36,8 @@
         "symfony/http-kernel": "~3.0"
     },
     "require-dev": {
-        "phpcq/all-tasks": "~1.1"
+        "phpcq/all-tasks": "~1.1",
+        "contao/manager-bundle": "~4.4"
     },
     "replace": {
         "bit3/contao-event-dispatcher": "self.version"
