@@ -17,15 +17,9 @@
  * @filesource
  */
 
-use ContaoCommunityAlliance\Contao\EventDispatcher\Configuration\ResourceLocator;
-use ContaoCommunityAlliance\Contao\EventDispatcher\EventDispatcherPopulator;
 use DependencyInjection\Container\PimpleGate;
-use Symfony\Component\EventDispatcher\EventDispatcher;
 
 /** @var PimpleGate $container */
 
 // Contao 4 code.
-if ($container->isContao4()) {
-    $container->provideSymfonyService('event-dispatcher', 'event_dispatcher');
-    return;
-}
+$container->provideSymfonyService('event-dispatcher', 'event_dispatcher');
