@@ -40,7 +40,7 @@
         "contao/manager-bundle": "~4.4"
     },
     "replace": {
-        "bit3/contao-event-dispatcher": "self.version"
+        "bit3/contao-event-dispatcher": "1.0.x-dev"
     },
     "autoload": {
         "psr-4": {
