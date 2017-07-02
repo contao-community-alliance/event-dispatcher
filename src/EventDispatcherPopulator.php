@@ -111,8 +111,10 @@ class EventDispatcherPopulator
         }
 
         foreach ($this->listenerFiles as $file) {
+            // @codeCoverageIgnoreStart
             $events = (array) include $file;
             $this->addListeners($events);
+            // @codeCoverageIgnoreEnd
         }
     }
 
@@ -154,8 +156,10 @@ class EventDispatcherPopulator
         }
 
         foreach ($this->subscriberFiles as $file) {
+            // @codeCoverageIgnoreStart
             $events = (array) include $file;
             $this->addSubscribers($events);
+            // @codeCoverageIgnoreEnd
         }
     }
 
