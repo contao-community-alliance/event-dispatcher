@@ -16,7 +16,7 @@
  */
 
 
-namespace ContaoCommunityAlliance\Contao\EventDispatcher\Tests\ContaoManager;
+namespace ContaoCommunityAlliance\Contao\EventDispatcher\Test\ContaoManager;
 
 use Contao\CoreBundle\ContaoCoreBundle;
 use Contao\ManagerBundle\ContaoManagerBundle;
