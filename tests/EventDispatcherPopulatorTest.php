@@ -3,13 +3,14 @@
 /**
  * This file is part of contao-community-alliance/event-dispatcher.
  *
- * (c) 2013-2016 Contao Community Alliance <https://c-c-a.org>
+ * (c) 2013-2017 Contao Community Alliance <https://c-c-a.org>
  *
  * This project is provided in good faith and hope to be usable by anyone.
  *
  * @package    contao-community-alliance/event-dispatcher
  * @author     Christian Schiffler <c.schiffler@cyberspectrum.de>
- * @copyright  2013-2016 Contao Community Alliance <https://c-c-a.org>
+ * @author     Sven Baumann <baumann.sv@gmail.com>
+ * @copyright  2013-2017 Contao Community Alliance <https://c-c-a.org>
  * @license    https://github.com/contao-community-alliance/event-dispatcher/LICENSE LGPL-3.0+
  * @link       https://github.com/contao-community-alliance/event-dispatcher
  * @filesource
@@ -72,13 +73,23 @@ class EventDispatcherPopulatorTest extends \PHPUnit_Framework_TestCase
     public function testPopulateAddsListenerFromGlobalsArray()
     {
         $GLOBALS['TL_EVENTS'] = [
-            'event-name' => [$listener = [new \DateTime(), 'testMethod']]
+            'event-name1' => [$listener1 = [new \DateTime(), 'testMethod']],
+            'event-name2' => [
+                [$listener2 = [new \DateTime(), 'testMethod'], 2],
+                [$listener3 = [new \DateTime(), 'testMethod'], 3]
+            ]
         ];
 
         $dispatcher = $this->getMockForAbstractClass('Symfony\Component\EventDispatcher\EventDispatcherInterface');
         $populator  = new EventDispatcherPopulator($dispatcher, [], []);
 
-        $dispatcher->expects($this->once())->method('addListener')->with('event-name', $listener, 0);
+        $dispatcher->expects($this->exactly(3))
+            ->method('addListener')
+            ->withConsecutive(
+                ['event-name1', $listener1, 0],
+                ['event-name2', $listener2, 2],
+                ['event-name2', $listener3, 3]
+            );
 
         $populator->populate();
     }
@@ -93,14 +104,30 @@ class EventDispatcherPopulatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testPopulateAddsSubscriberFromGlobalsArray()
     {
-        $dispatcher = $this->getMockForAbstractClass('Symfony\Component\EventDispatcher\EventDispatcherInterface');
-        $subscriber = $this->getMockForAbstractClass('Symfony\Component\EventDispatcher\EventSubscriberInterface');
+        $dispatcher  = $this->getMockForAbstractClass('Symfony\Component\EventDispatcher\EventDispatcherInterface');
+        $subscriber1 = $this->getMockForAbstractClass('Symfony\Component\EventDispatcher\EventSubscriberInterface');
+        $subscriber2 = $this->getMockForAbstractClass('Symfony\Component\EventDispatcher\EventSubscriberInterface');
+        $subscriber3 = $this->getMockForAbstractClass('Symfony\Component\EventDispatcher\EventSubscriberInterface');
 
-        $GLOBALS['TL_EVENT_SUBSCRIBERS'] = [$subscriber];
+        $subscriberCallable3 = function () use ($subscriber3) {
+            return $subscriber3;
+        };
 
-        $dispatcher->expects($this->once())->method('addSubscriber')->with($subscriber);
+        $GLOBALS['TL_EVENT_SUBSCRIBERS'] = [
+            $subscriber1,
+            get_class($subscriber2),
+            $subscriberCallable3
+        ];
 
-        $populator  = new EventDispatcherPopulator($dispatcher, [], []);
+        $dispatcher->expects($this->exactly(3))
+            ->method('addSubscriber')
+            ->withConsecutive(
+                [$subscriber1],
+                [$subscriber2],
+                [$subscriber3]
+            );
+
+        $populator = new EventDispatcherPopulator($dispatcher, [], []);
         $populator->populate();
     }
 }
