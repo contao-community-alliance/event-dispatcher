@@ -15,7 +15,6 @@
  * @filesource
  */
 
-
 namespace ContaoCommunityAlliance\Contao\EventDispatcher\Test\ContaoManager;
 
 use Contao\CoreBundle\ContaoCoreBundle;
@@ -28,8 +27,6 @@ use DependencyInjection\Container\CcaDependencyInjectionBundle;
 
 /**
  * Tests the Plugin class.
- *
- * @author Leo Feyer <https://github.com/leofeyer>
  */
 class PluginTest extends \PHPUnit_Framework_TestCase
 {
