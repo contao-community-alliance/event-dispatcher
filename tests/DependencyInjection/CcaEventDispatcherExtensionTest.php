@@ -36,6 +36,6 @@ class CcaEventDispatcherExtensionTest extends \PHPUnit_Framework_TestCase
 
         $extension->load([], $container = new ContainerBuilder());
 
-        $this->assertTrue($container->hasDefinition('contao_community_alliance.event_dispatcher.populator'));
+        $this->assertTrue($container->hasDefinition('cca.event_dispatcher.populator'));
     }
 }

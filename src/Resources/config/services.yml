@@ -1,7 +1,7 @@
 services:
-    contao_community_alliance.event_dispatcher.populator:
+    cca.event_dispatcher.populator:
         class: ContaoCommunityAlliance\Contao\EventDispatcher\EventDispatcherPopulator
         arguments:
             - "@event_dispatcher"
-            - "%contao_community_alliance.legacy_listeners%"
-            - "%contao_community_alliance.legacy_subscribers%"
+            - "%cca.event_dispatcher.legacy_listeners%"
+            - "%cca.event_dispatcher.legacy_subscribers%"

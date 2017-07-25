@@ -40,13 +40,13 @@ class CcaEventDispatcherBundle extends Bundle
 
         $listenerLocator = new ResourceLocator($rootDir, $bundles, 'event_listeners.php');
         $container->setParameter(
-            'contao_community_alliance.legacy_listeners',
+            'cca.event_dispatcher.legacy_listeners',
             $listenerLocator->getResourcePaths()
         );
 
         $subscriberLocator = new ResourceLocator($rootDir, $bundles, 'event_subscribers.php');
         $container->setParameter(
-            'contao_community_alliance.legacy_subscribers',
+            'cca.event_dispatcher.legacy_subscribers',
             $subscriberLocator->getResourcePaths()
         );
 

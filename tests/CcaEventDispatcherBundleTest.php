@@ -47,7 +47,7 @@ class CcaEventDispatcherBundleTest extends TestCase
             'ContaoCommunityAlliance\Contao\EventDispatcher\DependencyInjection\Compiler\AddConfiguratorPass',
             $lastPass
         );
-        $this->assertSame([], $container->getParameter('contao_community_alliance.legacy_listeners'));
-        $this->assertSame([], $container->getParameter('contao_community_alliance.legacy_subscribers'));
+        $this->assertSame([], $container->getParameter('cca.event_dispatcher.legacy_listeners'));
+        $this->assertSame([], $container->getParameter('cca.event_dispatcher.legacy_subscribers'));
     }
 }

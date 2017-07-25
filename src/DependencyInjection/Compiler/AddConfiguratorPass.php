@@ -37,11 +37,11 @@ class AddConfiguratorPass implements CompilerPassInterface
         $configurator      = $definition->getConfigurator();
 
         $definition->setConfigurator(
-            [new Reference('contao_community_alliance.event_dispatcher.populator'), 'populate']
+            [new Reference('cca.event_dispatcher.populator'), 'populate']
         );
 
         if ($configurator) {
-            $populator = $container->findDefinition('contao_community_alliance.event_dispatcher.populator');
+            $populator = $container->findDefinition('cca.event_dispatcher.populator');
             $populator->addMethodCall('setConfigurator', [$configurator]);
         }
     }

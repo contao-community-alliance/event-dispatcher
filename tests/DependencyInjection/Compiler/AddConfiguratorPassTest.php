@@ -41,7 +41,7 @@ class AddConfiguratorPassTest extends \PHPUnit_Framework_TestCase
 
         $container->setParameter('kernel.debug', false);
         $container->setDefinition('event_dispatcher', $dispatcherDefinition);
-        $container->setDefinition('contao_community_alliance.event_dispatcher.populator', $populatorDefinition);
+        $container->setDefinition('cca.event_dispatcher.populator', $populatorDefinition);
 
         $compilerPass = new AddConfiguratorPass();
 
@@ -52,7 +52,7 @@ class AddConfiguratorPassTest extends \PHPUnit_Framework_TestCase
         $this->assertNotTrue($container->getParameter('kernel.debug'));
         $this->assertInternalType('array', $configurator);
         $this->assertInstanceOf('Symfony\Component\DependencyInjection\Reference', $configurator[0]);
-        $this->assertSame('contao_community_alliance.event_dispatcher.populator', (string) $configurator[0]);
+        $this->assertSame('cca.event_dispatcher.populator', (string) $configurator[0]);
         $this->assertSame('populate', $configurator[1]);
     }
 
@@ -71,7 +71,7 @@ class AddConfiguratorPassTest extends \PHPUnit_Framework_TestCase
 
         $container->setParameter('kernel.debug', false);
         $container->setDefinition('event_dispatcher', $dispatcherDefinition);
-        $container->setDefinition('contao_community_alliance.event_dispatcher.populator', $populatorDefinition);
+        $container->setDefinition('cca.event_dispatcher.populator', $populatorDefinition);
 
         $compilerPass = new AddConfiguratorPass();
 
@@ -82,7 +82,7 @@ class AddConfiguratorPassTest extends \PHPUnit_Framework_TestCase
         $this->assertNotTrue($container->getParameter('kernel.debug'));
         $this->assertInternalType('array', $configurator);
         $this->assertInstanceOf('Symfony\Component\DependencyInjection\Reference', $configurator[0]);
-        $this->assertSame('contao_community_alliance.event_dispatcher.populator', (string) $configurator[0]);
+        $this->assertSame('cca.event_dispatcher.populator', (string) $configurator[0]);
         $this->assertSame('populate', $configurator[1]);
         $this->assertSame([['setConfigurator', [$realConfigurator]]], $populatorDefinition->getMethodCalls());
     }
