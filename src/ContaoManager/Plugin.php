@@ -43,7 +43,8 @@ class Plugin implements BundlePluginInterface
                         ContaoManagerBundle::class,
                         CcaDependencyInjectionBundle::class
                     ]
-                ),
+                )
+                ->setReplace(['event-dispatcher'])
         ];
     }
 }
