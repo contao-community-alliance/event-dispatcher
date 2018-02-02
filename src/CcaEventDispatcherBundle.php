@@ -38,17 +38,20 @@ class CcaEventDispatcherBundle extends Bundle
         $rootDir = dirname($container->getParameter('kernel.root_dir'));
         $bundles = $container->getParameter('kernel.bundles');
 
-        $listenerLocator = new ResourceLocator($rootDir, $bundles, 'event_listeners.php');
-        $container->setParameter(
-            'cca.event_dispatcher.legacy_listeners',
-            $listenerLocator->getResourcePaths()
-        );
+        // We can not modify an compiled container.
+        if (!$container->isCompiled()) {
+            $listenerLocator = new ResourceLocator($rootDir, $bundles, 'event_listeners.php');
+            $container->setParameter(
+                'cca.event_dispatcher.legacy_listeners',
+                $listenerLocator->getResourcePaths()
+            );
 
-        $subscriberLocator = new ResourceLocator($rootDir, $bundles, 'event_subscribers.php');
-        $container->setParameter(
-            'cca.event_dispatcher.legacy_subscribers',
-            $subscriberLocator->getResourcePaths()
-        );
+            $subscriberLocator = new ResourceLocator($rootDir, $bundles, 'event_subscribers.php');
+            $container->setParameter(
+                'cca.event_dispatcher.legacy_subscribers',
+                $subscriberLocator->getResourcePaths()
+            );
+        }
 
         $container->addCompilerPass(new AddConfiguratorPass(), PassConfig::TYPE_BEFORE_OPTIMIZATION);
     }
