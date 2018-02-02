@@ -3,13 +3,13 @@
 /**
  * This file is part of contao-community-alliance/event-dispatcher.
  *
- * (c) 2013-2016 Contao Community Alliance <https://c-c-a.org>
+ * (c) 2013-2018 Contao Community Alliance <https://c-c-a.org>
  *
  * This project is provided in good faith and hope to be usable by anyone.
  *
  * @package    contao-community-alliance/event-dispatcher
  * @author     Christian Schiffler <c.schiffler@cyberspectrum.de>
- * @copyright  2013-2016 Contao Community Alliance <https://c-c-a.org>
+ * @copyright  2013-2018 Contao Community Alliance <https://c-c-a.org>
  * @license    https://github.com/contao-community-alliance/event-dispatcher/LICENSE LGPL-3.0+
  * @link       https://github.com/contao-community-alliance/event-dispatcher
  * @filesource
@@ -17,7 +17,7 @@
 
 namespace ContaoCommunityAlliance\Contao\EventDispatcher\Test;
 
-class TestCase extends \PHPUnit_Framework_TestCase
+class TestCase extends \PHPUnit\Framework\TestCase
 {
     /**
      * Temporary directory.
@@ -29,7 +29,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
     /**
      * {@inheritDoc}
      */
-    public function setUp()
+    protected function setUp()
     {
         parent::setUp();
 
@@ -40,7 +40,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
     /**
      * {@inheritDoc}
      */
-    public function tearDown()
+    protected function tearDown()
     {
         if (!file_exists($this->tempDir)) {
             return;
@@ -58,6 +58,4 @@ class TestCase extends \PHPUnit_Framework_TestCase
         }
         rmdir($this->tempDir);
     }
-
-
 }

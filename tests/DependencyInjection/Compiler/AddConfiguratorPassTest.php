@@ -3,14 +3,14 @@
 /**
  * This file is part of contao-community-alliance/event-dispatcher.
  *
- * (c) 2013-2017 Contao Community Alliance <https://c-c-a.org>
+ * (c) 2013-2018 Contao Community Alliance <https://c-c-a.org>
  *
  * This project is provided in good faith and hope to be usable by anyone.
  *
  * @package    contao-community-alliance/event-dispatcher
  * @author     Christian Schiffler <c.schiffler@cyberspectrum.de>
  * @author     Sven Baumann <baumann.sv@gmail.com>
- * @copyright  2013-2017 Contao Community Alliance <https://c-c-a.org>
+ * @copyright  2013-2018 Contao Community Alliance <https://c-c-a.org>
  * @license    https://github.com/contao-community-alliance/event-dispatcher/LICENSE LGPL-3.0+
  * @link       https://github.com/contao-community-alliance/event-dispatcher
  * @filesource
@@ -19,13 +19,14 @@
 namespace ContaoCommunityAlliance\Contao\EventDispatcher\Test\DependencyInjection\Compiler;
 
 use ContaoCommunityAlliance\Contao\EventDispatcher\DependencyInjection\Compiler\AddConfiguratorPass;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 
 /**
  * This class tests the AddConfiguratorPass
  */
-class AddConfiguratorPassTest extends \PHPUnit_Framework_TestCase
+class AddConfiguratorPassTest extends TestCase
 {
     /**
      * Test that the compiler pass adds the references.
