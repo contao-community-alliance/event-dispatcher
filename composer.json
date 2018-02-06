@@ -52,7 +52,7 @@
     "extra": {
         "contao-manager-plugin": "ContaoCommunityAlliance\\Contao\\EventDispatcher\\ContaoManager\\Plugin",
         "branch-alias": {
-            "dev-feature/contao4": "2.0.x-dev"
+            "dev-master": "2.0.x-dev"
         }
     }
 }
