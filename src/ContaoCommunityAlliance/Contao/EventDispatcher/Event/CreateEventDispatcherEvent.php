@@ -3,15 +3,16 @@
 /**
  * This file is part of contao-community-alliance/event-dispatcher.
  *
- * (c) Contao Community Alliance <https://c-c-a.org>
+ * (c) 2013-2018 Contao Community Alliance <https://c-c-a.org>
  *
  * This project is provided in good faith and hope to be usable by anyone.
  *
- * @package    contao-community-alliance/<project-name>
+ * @package    contao-community-alliance/event-dispatcher
  * @author     Tristan Lins <t.lins@c-c-a.org>
- * @copyright  Contao Community Alliance <https://c-c-a.org>
+ * @author     Christian Schiffler <c.schiffler@cyberspectrum.de>
+ * @copyright  2013-2018 Contao Community Alliance <https://c-c-a.org>
+ * @license    https://github.com/contao-community-alliance/event-dispatcher/LICENSE LGPL-3.0-or-later
  * @link       https://github.com/contao-community-alliance/event-dispatcher
- * @license    http://opensource.org/licenses/LGPL-3.0 LGPL-3.0+
  * @filesource
  */
 
@@ -29,6 +30,7 @@ class CreateEventDispatcherEvent extends Event
      * The event name.
      *
      * @var string
+     *
      * @deprecated Use ContaoCommunityAlliance\Contao\EventDispatcher\EventDispatcherEvents::CREATE_EVENT_DISPATCHER
      *             instead.
      */
