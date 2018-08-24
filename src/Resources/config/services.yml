@@ -1,6 +1,7 @@
 services:
     cca.event_dispatcher.populator:
         class: ContaoCommunityAlliance\Contao\EventDispatcher\EventDispatcherPopulator
+        public: false
         arguments:
             - "@event_dispatcher"
             - "%cca.event_dispatcher.legacy_listeners%"
