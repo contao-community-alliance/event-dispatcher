@@ -32,8 +32,8 @@
         "php": "^5.6 || ^7.0",
         "contao/core-bundle": "^4.4",
         "contao-community-alliance/dependency-container": "^2.0",
-        "symfony/event-dispatcher": "^3.0",
-        "symfony/http-kernel": "^3.0"
+        "symfony/event-dispatcher": "^3.0 || ^4.0",
+        "symfony/http-kernel": "^3.0 || ^4.0"
     },
     "require-dev": {
         "phpcq/all-tasks": "^1.2",
@@ -52,7 +52,8 @@
     "extra": {
         "contao-manager-plugin": "ContaoCommunityAlliance\\Contao\\EventDispatcher\\ContaoManager\\Plugin",
         "branch-alias": {
-            "dev-master": "2.0.x-dev"
+            "dev-master": "2.0.x-dev",
+            "dev-develop": "2.1.x-dev"
         }
     }
 }
