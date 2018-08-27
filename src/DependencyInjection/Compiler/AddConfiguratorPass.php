@@ -33,8 +33,14 @@ class AddConfiguratorPass implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         $dispatcherService = !$container->getParameter('kernel.debug') ? 'event_dispatcher' : 'debug.event_dispatcher';
-        $definition        = $container->findDefinition($dispatcherService);
-        $configurator      = $definition->getConfigurator();
+
+        // Compatibility for Symfony 4. In this Version the definition debug.event_dispatcher no more exists.
+        if ($container->getParameter('kernel.debug') && !$container->hasDefinition('debug.event_dispatcher')) {
+            $dispatcherService = 'event_dispatcher';
+        }
+
+        $definition   = $container->findDefinition($dispatcherService);
+        $configurator = $definition->getConfigurator();
 
         $definition->setConfigurator(
             [new Reference('cca.event_dispatcher.populator'), 'populate']
