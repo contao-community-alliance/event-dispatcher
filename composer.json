@@ -6,13 +6,13 @@
         "event"
     ],
     "type": "contao-bundle",
-    "homepage": "http://c-c-a.org/",
+    "homepage": "https://c-c-a.org/",
     "license": "LGPL-3.0-or-later",
     "authors": [
         {
             "name": "Christian Schiffler",
             "email": "c.schiffler@cyberspectrum.de",
-            "homepage": "http://www.cyberspectrum.de",
+            "homepage": "https://www.cyberspectrum.de",
             "role": "Developer"
         },
         {
@@ -29,11 +29,11 @@
         "source": "https://github.com/contao-community-alliance/event-dispatcher"
     },
     "require": {
-        "php": "^5.6 || ^7.0",
+        "php": "^7.4",
         "contao/core-bundle": "^4.4",
         "contao-community-alliance/dependency-container": "^2.0",
-        "symfony/event-dispatcher": "^3.0 || ^4.0",
-        "symfony/http-kernel": "^3.0 || ^4.0"
+        "symfony/event-dispatcher": "^5.4",
+        "symfony/http-kernel": "^5.4"
     },
     "require-dev": {
         "phpcq/all-tasks": "^1.2",
@@ -53,7 +53,7 @@
         "contao-manager-plugin": "ContaoCommunityAlliance\\Contao\\EventDispatcher\\ContaoManager\\Plugin",
         "branch-alias": {
             "dev-master": "2.0.x-dev",
-            "dev-develop": "2.1.x-dev"
+            "dev-release/2.1.0": "2.1.x-dev"
         }
     }
 }
