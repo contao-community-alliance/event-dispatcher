@@ -3,7 +3,8 @@
     "description": "Event dispatcher service for Contao Open Source CMS",
     "keywords": [
         "contao",
-        "event"
+        "event",
+        "cca"
     ],
     "type": "contao-bundle",
     "homepage": "https://c-c-a.org/",
@@ -29,9 +30,9 @@
         "source": "https://github.com/contao-community-alliance/event-dispatcher"
     },
     "require": {
-        "php": "^7.4",
-        "contao/core-bundle": "^4.4",
-        "contao-community-alliance/dependency-container": "^2.0",
+        "php": "^7.4 || ^8.0",
+        "contao/core-bundle": "^4.13",
+        "contao-community-alliance/dependency-container": "^2.1@dev",
         "symfony/event-dispatcher": "^5.4",
         "symfony/http-kernel": "^5.4"
     },
