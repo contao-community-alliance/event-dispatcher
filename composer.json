@@ -31,7 +31,7 @@
     },
     "require": {
         "php": "^7.4 || ^8.0",
-        "contao/core-bundle": "^4.13",
+        "contao/core-bundle": "^4.9",
         "contao-community-alliance/dependency-container": "^2.1@dev",
         "symfony/event-dispatcher": "^5.4",
         "symfony/http-kernel": "^5.4"
