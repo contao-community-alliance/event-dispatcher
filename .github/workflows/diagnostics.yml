@@ -5,21 +5,32 @@ on:
   push:
     branches:
       - master
+      - 'release/*'
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: PHP ${{ matrix.php }}
+    name: 'PHP: ${{ matrix.php }} Contao: ${{ matrix.contao }}'
     strategy:
       fail-fast: false
       matrix:
         include:
-          - php: 7.4
+          - php: '7.4'
             output: '-o github-action -o default'
             phpcq_install: 'install'
-          - php: 8.0
+            contao: '~4.9.0'
+          - php: '7.4'
+            output: '-o github-action -o default'
+            phpcq_install: 'install'
+            contao: '~4.13.0'
+          - php: '8.0'
             output: '-o default'
             phpcq_install: 'update'
+            contao: '~4.13.0'
+          - php: '8.1'
+            output: '-o default'
+            phpcq_install: 'update'
+            contao: '~4.13.0'
 
     steps:
       - name: Pull source
@@ -30,6 +41,7 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
 
+      # setup caches
       - name: Cache composer cache directory
         uses: actions/cache@v1
         env:
@@ -44,10 +56,9 @@ jobs:
           cache-name: vendor
         with:
           path: vendor
-          key: ${{ runner.os }}-${{ matrix.php }}-build-${{ env.cache-name }}-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-${{ matrix.php }}-${{ matrix.contao }}-build-${{ env.cache-name }}-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
-            ${{ runner.os }}-${{ matrix.php }}-build-${{ env.cache-name }}-
-
+            ${{ runner.os }}-${{ matrix.php }}-${{ matrix.contao }}-build-${{ env.cache-name }}-
       - name: Cache phpcq directory
         uses: actions/cache@v1
         env:
@@ -57,13 +68,15 @@ jobs:
           key: ${{ runner.os }}-${{ matrix.php }}-build-${{ env.cache-name }}-${{ hashFiles('**/.phpcq.lock') }}
           restore-keys: |
             ${{ runner.os }}-${{ matrix.php }}-build-${{ env.cache-name }}-
-
+      # install dependencies and tools
       - name: Install composer dependencies
-        run: composer install
-
+        run: |
+          composer require contao/core-bundle ${{ matrix.contao }} --no-update
+          composer install
       - name: Install phpcq toolchain
         run: ./vendor/bin/phpcq ${{ matrix.phpcq_install }} -v
 
+      # run tests
       - name: Run tests
         run: ./vendor/bin/phpcq run -v ${{ matrix.output }}
 
@@ -71,5 +84,5 @@ jobs:
         uses: actions/upload-artifact@v2
         if: ${{ success() }} || ${{ failure() }}
         with:
-          name: phpcq-builds-php-${{ matrix.php }}
+          name: phpcq-builds-php-${{ matrix.php }}-${{ matrix.contao }}
           path: .phpcq/build/
