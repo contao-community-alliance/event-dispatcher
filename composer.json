@@ -37,8 +37,8 @@
         "symfony/http-kernel": "^4.0 || ^5.4"
     },
     "require-dev": {
-        "phpcq/all-tasks": "^1.2",
-        "contao/manager-bundle": "^4.4"
+        "contao/manager-bundle": "^4.4",
+        "phpcq/runner-bootstrap": "^1.0@dev"
     },
     "autoload": {
         "psr-4": {
@@ -55,6 +55,12 @@
         "branch-alias": {
             "dev-master": "2.0.x-dev",
             "dev-release/2.1.0": "2.1.x-dev"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "contao-components/installer": false,
+            "contao/manager-plugin": false
         }
     }
 }
