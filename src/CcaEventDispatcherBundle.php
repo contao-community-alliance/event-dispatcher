@@ -31,15 +31,20 @@ class CcaEventDispatcherBundle extends Bundle
 {
     /**
      * {@inheritDoc}
+     *
+     * @psalm-suppress PossiblyInvalidCast
+     * @psalm-suppress InvalidArgument
+     * @psalm-suppress MixedArgumentTypeCoercion
+     * @psalm-suppress PossiblyNullArgument
      */
-    public function build(ContainerBuilder $container)
+    public function build(ContainerBuilder $container): void
     {
         parent::build($container);
 
         $rootDir = dirname($container->getParameter('kernel.project_dir'));
         $bundles = $container->getParameter('kernel.bundles');
 
-        // We can not modify an compiled container.
+        // We can not modify a compiled container.
         if (!$container->isCompiled()) {
             $listenerLocator = new ResourceLocator($rootDir, $bundles, 'event_listeners.php');
             $container->setParameter(

@@ -51,6 +51,8 @@ class EventDispatcherPopulator
      * The configurator to call before populating.
      *
      * @var callable
+     *
+     * @psalm-suppress PropertyNotSetInConstructor
      */
     private $configurator;
 
@@ -104,6 +106,7 @@ class EventDispatcherPopulator
      *
      * @SuppressWarnings(PHPMD.Superglobals)
      * @SuppressWarnings(PHPMD.CamelCaseVariableName)
+     * @psalm-suppress UnresolvableInclude
      */
     private function populateListeners()
     {
@@ -125,15 +128,18 @@ class EventDispatcherPopulator
      * @param array $events A collection of event names as keys and an array of listeners as values.
      *
      * @return static
+     *
+     * @psalm-suppress MixedArgument
+     * @psalm-suppress MixedArgumentTypeCoercion
+     * @psalm-suppress MixedAssignment
      */
     private function addListeners(array $events)
     {
         foreach ($events as $eventName => $listeners) {
             foreach ($listeners as $listener) {
+                $priority = 0;
                 if (is_array($listener) && count($listener) === 2 && is_int($listener[1])) {
                     list($listener, $priority) = $listener;
-                } else {
-                    $priority = 0;
                 }
                 $this->dispatcher->addListener($eventName, $listener, $priority);
             }
@@ -149,6 +155,7 @@ class EventDispatcherPopulator
      *
      * @SuppressWarnings(PHPMD.Superglobals)
      * @SuppressWarnings(PHPMD.CamelCaseVariableName)
+     * @psalm-suppress UnresolvableInclude
      */
     private function populateSubscribers()
     {
@@ -172,6 +179,10 @@ class EventDispatcherPopulator
      *                                                                               subscriber objects.
      *
      * @return static
+     *
+     * @psalm-suppress MixedArgument
+     * @psalm-suppress MixedAssignment
+     * @psalm-suppress InvalidStringClass
      */
     private function addSubscribers(array $eventSubscribers)
     {

@@ -24,6 +24,8 @@ class EventDispatcherPopulatorTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * {@inheritDoc}
+     *
+     * @SuppressWarnings(PHPMD.Superglobals)
      */
     protected function tearDown()
     {
@@ -69,6 +71,7 @@ class EventDispatcherPopulatorTest extends \PHPUnit\Framework\TestCase
      *
      * @SuppressWarnings(PHPMD.Superglobals)
      * @SuppressWarnings(PHPMD.CamelCaseVariableName)
+     * @SuppressWarnings(PHPMD.MissingImport)
      */
     public function testPopulateAddsListenerFromGlobalsArray()
     {

@@ -39,6 +39,9 @@ class TestCase extends \PHPUnit\Framework\TestCase
 
     /**
      * {@inheritDoc}
+     *
+     * @SuppressWarnings(PHPMD.MissingImport)
+     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     protected function tearDown()
     {
