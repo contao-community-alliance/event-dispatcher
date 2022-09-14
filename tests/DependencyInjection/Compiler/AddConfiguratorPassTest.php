@@ -51,7 +51,7 @@ class AddConfiguratorPassTest extends TestCase
         $configurator = $dispatcherDefinition->getConfigurator();
         $this->assertTrue($container->hasParameter('kernel.debug'));
         $this->assertNotTrue($container->getParameter('kernel.debug'));
-        $this->assertInternalType('array', $configurator);
+        $this->assertIsArray($configurator);
         $this->assertInstanceOf('Symfony\Component\DependencyInjection\Reference', $configurator[0]);
         $this->assertSame('cca.event_dispatcher.populator', (string) $configurator[0]);
         $this->assertSame('populate', $configurator[1]);
@@ -81,7 +81,7 @@ class AddConfiguratorPassTest extends TestCase
         $configurator = $dispatcherDefinition->getConfigurator();
         $this->assertTrue($container->hasParameter('kernel.debug'));
         $this->assertNotTrue($container->getParameter('kernel.debug'));
-        $this->assertInternalType('array', $configurator);
+        $this->assertIsArray($configurator);
         $this->assertInstanceOf('Symfony\Component\DependencyInjection\Reference', $configurator[0]);
         $this->assertSame('cca.event_dispatcher.populator', (string) $configurator[0]);
         $this->assertSame('populate', $configurator[1]);
