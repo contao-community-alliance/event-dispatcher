@@ -30,7 +30,7 @@ class CcaEventDispatcherBundleTest extends TestCase
      *
      * @return void
      */
-    public function testBuild()
+    public function testBuild(): void
     {
         $container = new ContainerBuilder();
         $container->setParameter('kernel.bundles', []);

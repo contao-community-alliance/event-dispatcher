@@ -27,7 +27,7 @@ class EventDispatcherPopulatorTest extends \PHPUnit\Framework\TestCase
      *
      * @SuppressWarnings(PHPMD.Superglobals)
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         parent::tearDown();
         unset($GLOBALS['TL_EVENTS']);
