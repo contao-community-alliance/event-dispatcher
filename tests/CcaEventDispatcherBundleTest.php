@@ -34,7 +34,7 @@ class CcaEventDispatcherBundleTest extends TestCase
     {
         $container = new ContainerBuilder();
         $container->setParameter('kernel.bundles', []);
-        $container->setParameter('kernel.root_dir', $this->tempDir . '/app');
+        $container->setParameter('kernel.project_dir', $this->tempDir);
 
         $bundle = new CcaEventDispatcherBundle();
 
