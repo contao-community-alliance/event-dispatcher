@@ -17,6 +17,8 @@
 
 namespace ContaoCommunityAlliance\Contao\EventDispatcher\Configuration;
 
+use ReflectionClass;
+
 /**
  * This class locates all resources from the installation.
  */
@@ -67,16 +69,19 @@ class ResourceLocator
         $paths = [];
 
         foreach ($this->bundles as $name => $class) {
-            if (null !== ($path = $this->getResourcePathFromBundle($this->appRoot, $name, $class))) {
+            $path = $this->getResourcePathFromBundle($this->appRoot, (string)$name, $class);
+            if (null !== ($path)) {
                 $paths[] = $path;
             }
         }
 
-        if (is_readable($file = $this->appRoot . '/app/Resources/contao/config/' . $this->fileName)) {
+        $file = $this->appRoot . '/app/Resources/contao/config/' . $this->fileName;
+        if (is_readable($file)) {
             $paths[] = $file;
         }
 
-        if (is_readable($file = $this->appRoot . '/system/config/' . $this->fileName)) {
+        $file = $this->appRoot . '/system/config/' . $this->fileName;
+        if (is_readable($file)) {
             $paths[] = $file;
         }
 
@@ -91,6 +96,8 @@ class ResourceLocator
      * @param string $class   The bundle class name.
      *
      * @return string|null
+     *
+     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     private function getResourcePathFromBundle($rootDir, $name, $class)
     {
@@ -100,8 +107,8 @@ class ResourceLocator
             $path = $this->getResourcePathFromClassName($class);
         }
 
-        if (null !== $path && is_readable($file = $path . '/config/' . $this->fileName)) {
-            return $file;
+        if (null !== $path && is_readable($path . '/config/' . $this->fileName)) {
+            return $path . '/config/' . $this->fileName;
         }
 
         return null;
@@ -113,12 +120,16 @@ class ResourceLocator
      * @param string $class The class name of the bundle.
      *
      * @return string|null
+     *
+     * @throws \ReflectionException
+     *
+     * @psalm-suppress ArgumentTypeCoercion
      */
-    private function getResourcePathFromClassName($class)
+    private function getResourcePathFromClassName(string $class)
     {
-        $reflection = new \ReflectionClass($class);
-
-        if (is_dir($dir = dirname($reflection->getFileName()) . '/Resources/contao')) {
+        $reflection = new ReflectionClass($class);
+        $dir        = dirname($reflection->getFileName()) . '/Resources/contao';
+        if (is_dir($dir)) {
             return $dir;
         }
 

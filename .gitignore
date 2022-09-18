@@ -14,6 +14,8 @@ nbproject/
 build
 vendor
 composer.lock
+.phpcq
+.phpunit.result.cache
 
 # others
 phpunit.xml

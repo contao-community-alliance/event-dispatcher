@@ -29,7 +29,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -39,8 +39,11 @@ class TestCase extends \PHPUnit\Framework\TestCase
 
     /**
      * {@inheritDoc}
+     *
+     * @SuppressWarnings(PHPMD.MissingImport)
+     * @SuppressWarnings(PHPMD.ElseExpression)
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         if (!file_exists($this->tempDir)) {
             return;
