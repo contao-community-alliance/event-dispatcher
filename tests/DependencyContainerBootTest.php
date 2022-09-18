@@ -29,6 +29,9 @@ class DependencyContainerBootTest extends \PHPUnit\Framework\TestCase
      * Test that the services.php get's loaded correctly.
      *
      * @return void
+     *
+     * @SuppressWarnings(PHPMD.Superglobals)
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public function testLoadServicesPhp()
     {

@@ -30,7 +30,7 @@ class AddConfiguratorPass implements CompilerPassInterface
     /**
      * {@inheritDoc}
      */
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         $dispatcherService = !$container->getParameter('kernel.debug') ? 'event_dispatcher' : 'debug.event_dispatcher';
 

@@ -24,8 +24,10 @@ class EventDispatcherPopulatorTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * {@inheritDoc}
+     *
+     * @SuppressWarnings(PHPMD.Superglobals)
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         parent::tearDown();
         unset($GLOBALS['TL_EVENTS']);
@@ -69,14 +71,15 @@ class EventDispatcherPopulatorTest extends \PHPUnit\Framework\TestCase
      *
      * @SuppressWarnings(PHPMD.Superglobals)
      * @SuppressWarnings(PHPMD.CamelCaseVariableName)
+     * @SuppressWarnings(PHPMD.MissingImport)
      */
     public function testPopulateAddsListenerFromGlobalsArray()
     {
         $GLOBALS['TL_EVENTS'] = [
-            'event-name1' => [$listener1 = [new \DateTime(), 'testMethod']],
+            'event-name1' => [$listener1 = [new \DateTime(), 'getOffset']],
             'event-name2' => [
-                [$listener2 = [new \DateTime(), 'testMethod'], 2],
-                [$listener3 = [new \DateTime(), 'testMethod'], 3]
+                [$listener2 = [new \DateTime(), 'getOffset'], 2],
+                [$listener3 = [new \DateTime(), 'getOffset'], 3]
             ]
         ];
 

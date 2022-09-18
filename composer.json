@@ -1,66 +1,72 @@
 {
-    "name": "contao-community-alliance/event-dispatcher",
-    "description": "Event dispatcher service for Contao Open Source CMS",
-    "keywords": [
-        "contao",
-        "event",
-        "cca"
-    ],
-    "type": "contao-bundle",
-    "homepage": "https://c-c-a.org/",
-    "license": "LGPL-3.0-or-later",
-    "authors": [
-        {
-            "name": "Christian Schiffler",
-            "email": "c.schiffler@cyberspectrum.de",
-            "homepage": "https://www.cyberspectrum.de",
-            "role": "Developer"
-        },
-        {
-            "name": "Stefan Heimes",
-            "email": "stefan_heimes@hotmail.com",
-            "role": "Developer"
-        }
-    ],
-    "support": {
-        "email": "info@c-c-a.org",
-        "issues": "https://github.com/contao-community-alliance/event-dispatcher/issues",
-        "wiki": "https://github.com/contao-community-alliance/event-dispatcher/wiki",
-        "irc": "irc://irc.freenode.org/contao.dev",
-        "source": "https://github.com/contao-community-alliance/event-dispatcher"
+  "name": "contao-community-alliance/event-dispatcher",
+  "description": "Event dispatcher service for Contao Open Source CMS",
+  "license": "LGPL-3.0-or-later",
+  "type": "contao-bundle",
+  "keywords": [
+    "contao",
+    "event",
+    "cca"
+  ],
+  "authors": [
+    {
+      "name": "Christian Schiffler",
+      "email": "c.schiffler@cyberspectrum.de",
+      "homepage": "https://www.cyberspectrum.de",
+      "role": "Developer"
     },
-    "require": {
-        "php": "^7.4 || ^8.0",
-        "contao/core-bundle": "^4.9",
-        "contao-community-alliance/dependency-container": "^2.1@dev",
-        "symfony/event-dispatcher": "^4.0 || ^5.4",
-        "symfony/http-kernel": "^4.0 || ^5.4"
-    },
-    "require-dev": {
-        "contao/manager-bundle": "^4.4",
-        "phpcq/runner-bootstrap": "^1.0@dev"
-    },
-    "autoload": {
-        "psr-4": {
-            "ContaoCommunityAlliance\\Contao\\EventDispatcher\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "ContaoCommunityAlliance\\Contao\\EventDispatcher\\Test\\": "tests/"
-        }
-    },
-    "extra": {
-        "contao-manager-plugin": "ContaoCommunityAlliance\\Contao\\EventDispatcher\\ContaoManager\\Plugin",
-        "branch-alias": {
-            "dev-master": "2.0.x-dev",
-            "dev-release/2.1.0": "2.1.x-dev"
-        }
-    },
-    "config": {
-        "allow-plugins": {
-            "contao-components/installer": false,
-            "contao/manager-plugin": false
-        }
+    {
+      "name": "Stefan Heimes",
+      "email": "stefan_heimes@hotmail.com",
+      "role": "Developer"
     }
+  ],
+  "homepage": "https://c-c-a.org/",
+  "support": {
+    "email": "info@c-c-a.org",
+    "issues": "https://github.com/contao-community-alliance/event-dispatcher/issues",
+    "wiki": "https://github.com/contao-community-alliance/event-dispatcher/wiki",
+    "irc": "irc://irc.freenode.org/contao.dev",
+    "source": "https://github.com/contao-community-alliance/event-dispatcher"
+  },
+  "require": {
+    "php": "^7.4 || ^8.0",
+    "contao/core-bundle": "^4.9",
+    "symfony/config": "^4.0 || ^5.4",
+    "symfony/dependency-injection": "^4.0 || ^5.4",
+    "symfony/event-dispatcher": "^4.0 || ^5.4",
+    "symfony/http-kernel": "^4.0 || ^5.4"
+  },
+  "require-dev": {
+    "contao-community-alliance/dependency-container": "^2.1",
+    "contao/manager-bundle": "^4.4",
+    "phpcq/runner-bootstrap": "^1.0@dev"
+  },
+  "conflict": {
+    "contao-community-alliance/dependency-container": "<2.1,>=3.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "ContaoCommunityAlliance\\Contao\\EventDispatcher\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "ContaoCommunityAlliance\\Contao\\EventDispatcher\\Test\\": "tests/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "contao-components/installer": false,
+      "contao/manager-plugin": false
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "2.1.x-dev",
+      "dev-support/1.3.x": "1.3.x-dev",
+      "dev-support/2.0.x": "2.0.x-dev"
+    },
+    "contao-manager-plugin": "ContaoCommunityAlliance\\Contao\\EventDispatcher\\ContaoManager\\Plugin"
+  }
 }
