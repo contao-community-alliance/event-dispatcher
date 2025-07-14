@@ -13,6 +13,9 @@ phpcq:
     psalm:
       version: ^1.0
       signed: false
+      requirements:
+        psalm:
+          version: ^5.26
     composer-require-checker:
       version: ^1.0
       signed: false
@@ -42,10 +45,10 @@ phpcq:
     # psalm
     - 8A03EA3B385DBAA1
     - 12CE0F1D262429A5
-    # magl@magll.net
-    - D2CCAC42F6295E7D
+    # phpmd
+    - 9093F8B32E4815AA
     # PHP_CodeSniffer
-    - 31C7E470E2138192
+    - 97B02DD8E5071466
     # Composer normalize
     - C00543248C87FB13
 
